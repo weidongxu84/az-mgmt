@@ -24,7 +24,7 @@ variables:
   environmentName: 'az-mgmt'
   
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-16.04'
 
 stages:
 - stage: Build
@@ -40,6 +40,10 @@ stages:
       displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
+        goals: 'package'
+        jdkVersion: '1.11'
+        jdkArchitecture: 'x64'
+        publishJUnitResults: false
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
