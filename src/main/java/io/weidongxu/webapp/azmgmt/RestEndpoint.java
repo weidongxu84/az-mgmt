@@ -19,9 +19,8 @@ public class RestEndpoint {
 
     @GetMapping(
             value = "/vm/state",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @ResponseBody
     String state(@RequestParam String secret) {
         checkAuthorization(secret);
 
@@ -31,9 +30,8 @@ public class RestEndpoint {
 
     @GetMapping(
             value = "/vm/power",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @ResponseBody
     String power(@RequestParam String op, @RequestParam String secret) {
         checkAuthorization(secret);
 
