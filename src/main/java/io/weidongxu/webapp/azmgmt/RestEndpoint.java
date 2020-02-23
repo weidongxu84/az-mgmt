@@ -37,7 +37,7 @@ public class RestEndpoint {
     String power(@RequestParam String op, @RequestParam String secret) {
         checkAuthorization(secret);
 
-        VirtualMachinesInner clientVmInner = azureManagement.getClient().virtualMachines().manager().inner().virtualMachines()
+        VirtualMachinesInner clientVmInner = azureManagement.getClient().virtualMachines().manager().inner().virtualMachines();
         switch (op) {
             case "start":
                 clientVmInner.beginStart(VM_RG, VM_NAME);
