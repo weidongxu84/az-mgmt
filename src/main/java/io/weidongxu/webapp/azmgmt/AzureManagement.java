@@ -22,7 +22,7 @@ public class AzureManagement {
         subscriptionId = Objects.requireNonNull(System.getenv("SUBSCRIPTION_ID"));
         secret = Objects.requireNonNull(System.getenv("QUERY_SECRET"));
 
-        client = Azure.configure().withLogLevel(LogLevel.BODY_AND_HEADERS)
+        client = Azure.configure().withLogLevel(LogLevel.BASIC)
                 .authenticate(new AppServiceMSICredentials(AzureEnvironment.AZURE))
                 .withSubscription(subscriptionId);
     }
