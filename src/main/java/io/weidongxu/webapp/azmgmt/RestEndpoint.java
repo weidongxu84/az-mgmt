@@ -27,7 +27,7 @@ public class RestEndpoint {
 
         VirtualMachine vm = azureManagement.getClient().virtualMachines().getByResourceGroup(VM_RG, VM_NAME);
         return VirtualMachineState.builder()
-                .powerState(vm.powerState())
+                .powerState(vm.powerState().toString())
                 .build();
     }
 
