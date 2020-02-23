@@ -45,7 +45,7 @@ public class RestEndpoint {
             case "off":
                 clientVmInner.beginPowerOff(VM_RG, VM_NAME);
                 break;
-            case "restart":
+            case "reset":
                 clientVmInner.beginRestart(VM_RG, VM_NAME);
                 break;
         }
