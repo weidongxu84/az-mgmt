@@ -1,4 +1,4 @@
-package io.weidongxu.webapp.textnormalization;
+package io.weidongxu.webapp.azmgmt;
 
 import org.junit.Ignore;
 import org.junit.Test;

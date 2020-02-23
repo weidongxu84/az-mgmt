@@ -1,4 +1,4 @@
-package io.weidongxu.webapp.textnormalization;
+package io.weidongxu.webapp.azmgmt;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

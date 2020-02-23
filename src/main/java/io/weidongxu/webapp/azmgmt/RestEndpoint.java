@@ -1,4 +1,4 @@
-package io.weidongxu.webapp.textnormalization;
+package io.weidongxu.webapp.azmgmt;
 
 import com.microsoft.azure.management.compute.VirtualMachine;
 import org.springframework.beans.factory.annotation.Autowired;

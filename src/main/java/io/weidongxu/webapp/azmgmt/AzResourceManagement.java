@@ -1,4 +1,4 @@
-package io.weidongxu.webapp.textnormalization;
+package io.weidongxu.webapp.azmgmt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

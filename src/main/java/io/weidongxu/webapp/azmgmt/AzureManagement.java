@@ -1,4 +1,4 @@
-package io.weidongxu.webapp.textnormalization;
+package io.weidongxu.webapp.azmgmt;
 
 import com.microsoft.azure.AzureEnvironment;
 import com.microsoft.azure.credentials.AppServiceMSICredentials;
