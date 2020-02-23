@@ -43,7 +43,7 @@ stages:
         goals: 'package'
         jdkVersion: '1.11'
         jdkArchitecture: 'x64'
-        publishJUnitResults: false
+        publishJUnitResults: true
 
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
