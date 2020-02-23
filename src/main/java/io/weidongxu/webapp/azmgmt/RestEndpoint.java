@@ -54,7 +54,7 @@ public class RestEndpoint {
 
     private void checkAuthorization(String secret) {
         if (!azureManagement.getSecret().equals(secret)) {
-            throw new ForbiddenException();
+            throw new ForbiddenException("Not authorized.");
         }
     }
 }
