@@ -7,6 +7,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class AzureManagement {
@@ -16,8 +18,8 @@ public class AzureManagement {
     private final String secret;
 
     public AzureManagement() {
-        subscriptionId = System.getenv("SUBSCRIPTION_ID");
-        secret = System.getenv("QUERY_SECRET");
+        subscriptionId = Objects.requireNonNull(System.getenv("SUBSCRIPTION_ID"));
+        secret = Objects.requireNonNull(System.getenv("QUERY_SECRET"));
 
         client = Azure.authenticate(new AppServiceMSICredentials(AzureEnvironment.AZURE))
                 .withSubscription(subscriptionId);

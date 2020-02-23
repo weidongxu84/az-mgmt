@@ -21,9 +21,9 @@ public class RestEndpoint {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     @ResponseBody
-    List<VirtualMachine> list(@RequestParam String secret) {
+    List<VirtualMachine> listVirtualMachines(@RequestParam String secret) {
         if (azureManagement.getSecret().equals(secret)) {
-            return azureManagement.getClient().virtualMachines().list();
+            return azureManagement.getClient().virtualMachines().listByResourceGroup("appservice");
         } else {
             throw new ForbiddenException();
         }
