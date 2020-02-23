@@ -3,6 +3,7 @@ package io.weidongxu.webapp.azmgmt;
 import com.microsoft.azure.AzureEnvironment;
 import com.microsoft.azure.credentials.AppServiceMSICredentials;
 import com.microsoft.azure.management.Azure;
+import com.microsoft.rest.LogLevel;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,8 @@ public class AzureManagement {
         subscriptionId = Objects.requireNonNull(System.getenv("SUBSCRIPTION_ID"));
         secret = Objects.requireNonNull(System.getenv("QUERY_SECRET"));
 
-        client = Azure.authenticate(new AppServiceMSICredentials(AzureEnvironment.AZURE))
+        client = Azure.configure().withLogLevel(LogLevel.BODY_AND_HEADERS)
+                .authenticate(new AppServiceMSICredentials(AzureEnvironment.AZURE))
                 .withSubscription(subscriptionId);
     }
 
