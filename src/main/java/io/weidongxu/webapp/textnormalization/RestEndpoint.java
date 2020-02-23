@@ -23,7 +23,7 @@ public class RestEndpoint {
     @ResponseBody
     List<VirtualMachine> listVirtualMachines(@RequestParam String secret) {
         if (azureManagement.getSecret().equals(secret)) {
-            return azureManagement.getClient().virtualMachines().list();
+            return azureManagement.getClient().virtualMachines().listByResourceGroup("vmess");
         } else {
             throw new ForbiddenException();
         }
