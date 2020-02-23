@@ -39,10 +39,10 @@ public class RestEndpoint {
 
         VirtualMachinesInner clientVmInner = azureManagement.getClient().virtualMachines().manager().inner().virtualMachines();
         switch (op) {
-            case "start":
+            case "on":
                 clientVmInner.beginStart(VM_RG, VM_NAME);
                 break;
-            case "stop":
+            case "off":
                 clientVmInner.beginPowerOff(VM_RG, VM_NAME);
                 break;
             case "restart":
