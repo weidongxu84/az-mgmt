@@ -1,13 +1,15 @@
 package io.weidongxu.webapp.textnormalization;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TextNormalizationApplicationTests {
+public class AzResourceManagementTests {
 
 	@Test
 	public void contextLoads() {
