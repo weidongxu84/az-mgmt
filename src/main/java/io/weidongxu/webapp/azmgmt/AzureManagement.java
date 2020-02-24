@@ -15,11 +15,10 @@ import java.util.Objects;
 public class AzureManagement {
 
     private final Azure client;
-    private final String subscriptionId;
     private final String secret;
 
     public AzureManagement() {
-        subscriptionId = Objects.requireNonNull(System.getenv("SUBSCRIPTION_ID"));
+        String subscriptionId = Objects.requireNonNull(System.getenv("SUBSCRIPTION_ID"));
         secret = Objects.requireNonNull(System.getenv("QUERY_SECRET"));
 
         client = Azure.configure().withLogLevel(LogLevel.BASIC)
