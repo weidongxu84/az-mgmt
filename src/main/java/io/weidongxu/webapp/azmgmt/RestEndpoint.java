@@ -1,7 +1,7 @@
 package io.weidongxu.webapp.azmgmt;
 
-import com.microsoft.azure.management.compute.VirtualMachine;
-import com.microsoft.azure.management.compute.implementation.VirtualMachinesInner;
+import com.azure.resourcemanager.compute.fluent.VirtualMachinesClient;
+import com.azure.resourcemanager.compute.models.VirtualMachine;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -38,13 +38,13 @@ public class RestEndpoint {
     public VirtualMachineState power(@RequestParam String op, @RequestParam String secret) {
         checkAuthorization(secret);
 
-        VirtualMachinesInner clientVmInner = azureManagement.getClient().virtualMachines().manager().inner().virtualMachines();
+        VirtualMachinesClient clientVmInner = azureManagement.getClient().virtualMachines().manager().inner().getVirtualMachines();
         switch (op) {
             case "on":
                 clientVmInner.beginStart(VM_RG, VM_NAME);
                 break;
             case "off":
-                clientVmInner.beginPowerOff(VM_RG, VM_NAME);
+                clientVmInner.beginPowerOff(VM_RG, VM_NAME, false);
                 break;
             case "reset":
                 clientVmInner.beginRestart(VM_RG, VM_NAME);

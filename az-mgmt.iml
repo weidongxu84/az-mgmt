@@ -27,6 +27,7 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9" level="project" />
     <orderEntry type="library" name="Maven: io.micrometer:micrometer-core:1.1.6" level="project" />
@@ -50,72 +51,93 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.8" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-client-runtime:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.rest:client-runtime:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:20.0" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.retrofit2:retrofit:2.5.0" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.12.6" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.15.0" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okhttp3:logging-interceptor:3.12.2" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp-urlconnection:3.12.2" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.retrofit2:converter-jackson:2.5.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.9" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8.1" level="project" />
-    <orderEntry type="library" name="Maven: com.squareup.retrofit2:adapter-rxjava:2.6.2" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-client-authentication:1.7.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:adal4j:1.6.4" level="project" />
-    <orderEntry type="library" name="Maven: com.nimbusds:oauth2-oidc-sdk:6.5" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-resources:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-core-management:1.0.0-beta.3" level="project" />
+    <orderEntry type="library" name="Maven: com.github.spotbugs:spotbugs-annotations:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-storage:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-compute:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-network:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-keyvault:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-security-keyvault-keys:4.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-security-keyvault-secrets:4.2.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-msi:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-sql:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-authorization:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-appservice:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-cosmos:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-containerservice:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-monitor:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-containerregistry:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-dns:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-appplatform:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-storage-file-share:12.6.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-storage-common:12.8.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-containerinstance:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-privatedns:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-redis:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-eventhubs:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure.resourcemanager:azure-resourcemanager-trafficmanager:2.0.0-beta.4" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-identity:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-core:1.7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.9" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.9" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:3.1.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.28" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.2.12.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.25.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.microsoft.azure:msal4j:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: com.microsoft.azure:msal4j-persistence-extension:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.5.2" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:oauth2-oidc-sdk:7.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:content-type:2.0" level="project" />
+    <orderEntry type="library" name="Maven: net.minidev:json-smart:1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.4.4" level="project" />
+    <orderEntry type="library" name="Maven: com.nimbusds:nimbus-jose-jwt:8.8" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:javax.mail:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
-    <orderEntry type="library" name="Maven: com.nimbusds:lang-tag:1.4.4" level="project" />
-    <orderEntry type="library" name="Maven: com.nimbusds:nimbus-jose-jwt:8.7" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-annotations:1.10.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-resources:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: io.reactivex:rxjava:1.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.nanohttpd:nanohttpd:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: net.java.dev.jna:jna-platform:4.5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2-kdb:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:database:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" name="Maven: com.madgag.spongycastle:core:1.54.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:15.0" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2-dom:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2-kdbx:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.11" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2-jaxb:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.linguafranca.pwdb:KeePassJava2-simple:2.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.simpleframework:simple-xml:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: stax:stax:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: xpp3:xpp3:1.1.3.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.12" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-storage:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-network:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-compute:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.5" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-graph-rbac:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-keyvault:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-keyvault:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-keyvault-webkey:1.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-batch:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-trafficmanager:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-dns:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-redis:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-appservice:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-storage:6.1.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-keyvault-core:0.8.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-locks:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-eventhub:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-cdn:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-sql:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-containerinstance:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-containerregistry:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-containerservice:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-cosmosdb:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-search:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-msi:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-monitor:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-servicebus:1.31.0" level="project" />
-    <orderEntry type="library" name="Maven: joda-time:joda-time:2.10.3" level="project" />
-    <orderEntry type="library" name="Maven: com.microsoft.azure:azure-mgmt-batchai:1.31.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml:aalto-xml:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.azure:azure-core-http-netty:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http2:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-unix-common:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-kqueue:osx-x86_64:4.1.39.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor.netty:reactor-netty:0.8.11.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:2.1.8.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.jayway.jsonpath:json-path:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: net.minidev:json-smart:2.3" level="project" />
-    <orderEntry type="library" name="Maven: net.minidev:accessors-smart:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.4" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.28" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.11.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:2.23.4" level="project" />
@@ -130,5 +152,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.1.9.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.6.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: javax.xml.bind:jaxb-api:2.3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: javax.activation:javax.activation-api:1.2.0" level="project" />
   </component>
 </module>
