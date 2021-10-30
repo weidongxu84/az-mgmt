@@ -24,7 +24,7 @@ variables:
   environmentName: 'az-mgmt'
   
   # Agent VM image name
-  vmImageName: 'ubuntu-16.04'
+  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
