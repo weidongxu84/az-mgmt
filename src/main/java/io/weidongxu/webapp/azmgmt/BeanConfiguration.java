@@ -16,7 +16,7 @@ public class BeanConfiguration {
     @Bean
     public BasicAuthenticationEntryPoint authenticationEntryPoint() {
         BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-        entryPoint.setRealmName("user");
+        entryPoint.setRealmName("/");
         return entryPoint;
     }
 }
