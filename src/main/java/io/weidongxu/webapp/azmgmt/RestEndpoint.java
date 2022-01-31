@@ -19,6 +19,14 @@ public class RestEndpoint {
     private AzureManagement azureManagement;
 
     @GetMapping(
+            value = "/",
+            produces = MediaType.TEXT_PLAIN_VALUE
+    )
+    public String ok() {
+        return "";
+    }
+
+    @GetMapping(
             value = "/vm/state",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
