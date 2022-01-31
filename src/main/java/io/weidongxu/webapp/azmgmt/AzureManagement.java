@@ -20,7 +20,8 @@ import java.util.Objects;
 public class AzureManagement {
 
     private final AzureResourceManager client;
-    private final String secret;
+    private final String username;
+    private final String personalToken;
 
     private static final String AZ_CLI_CLIENT_ID = "04b07795-8ddb-461a-bbee-02f9e1bf7b46";
 
@@ -32,7 +33,8 @@ public class AzureManagement {
         String tenantId = configuration.get(Configuration.PROPERTY_AZURE_TENANT_ID);
 
         String subscriptionId = Objects.requireNonNull(configuration.get(Configuration.PROPERTY_AZURE_SUBSCRIPTION_ID));
-        secret = Objects.requireNonNull(configuration.get("QUERY_SECRET"));
+        username = Objects.requireNonNull(configuration.get("PERSONAL_USERNAME"));
+        personalToken = Objects.requireNonNull(configuration.get("PERSONAL_TOKEN"));
 
         TokenCredential credential = new ChainedTokenCredentialBuilder()
                 .addFirst(new ManagedIdentityCredentialBuilder().build())
@@ -51,7 +53,11 @@ public class AzureManagement {
         return client;
     }
 
-    public String getSecret() {
-        return secret;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPersonalToken() {
+        return personalToken;
     }
 }

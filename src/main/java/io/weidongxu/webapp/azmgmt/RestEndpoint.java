@@ -30,9 +30,7 @@ public class RestEndpoint {
             value = "/vm/state",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public VirtualMachineState state(@RequestParam String secret) {
-        checkAuthorization(secret);
-
+    public VirtualMachineState state() {
         VirtualMachine vm = azureManagement.getClient().virtualMachines().getByResourceGroup(VM_RG, VM_NAME);
         return VirtualMachineState.builder()
                 .powerState(vm.powerState().toString())
@@ -43,9 +41,7 @@ public class RestEndpoint {
             value = "/vm/power",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public VirtualMachineState power(@RequestParam String op, @RequestParam String secret) {
-        checkAuthorization(secret);
-
+    public VirtualMachineState power(@RequestParam String op) {
         VirtualMachinesClient clientVmInner = azureManagement.getClient().virtualMachines().manager().serviceClient().getVirtualMachines();
         switch (op) {
             case "on":
@@ -61,17 +57,10 @@ public class RestEndpoint {
                 log.warn("Invalid operation `{}`.", op);
                 break;
         }
-        return state(secret);
+        return state();
     }
 
     public static class StringAsJson {
 
-    }
-
-    private void checkAuthorization(String secret) {
-        if (!azureManagement.getSecret().equals(secret)) {
-            log.error("Unauthorized secret '{}'.", secret);
-            throw new ForbiddenException("Not authorized.");
-        }
     }
 }
