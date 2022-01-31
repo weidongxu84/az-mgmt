@@ -37,7 +37,9 @@ public class AzureManagement {
         TokenCredential credential = new ChainedTokenCredentialBuilder()
                 .addFirst(new ManagedIdentityCredentialBuilder().build())
                 .addLast(new InteractiveBrowserCredentialBuilder()
-                        .port(3124).clientId(clientId).tenantId(tenantId).build())  // as backup auth for local dev
+                        .redirectUrl("http://localhost:3124")
+                        .clientId(clientId)
+                        .tenantId(tenantId).build())  // as backup auth for local dev
                 .build();
 
         client = AzureResourceManager.configure().withLogLevel(HttpLogDetailLevel.BASIC)
