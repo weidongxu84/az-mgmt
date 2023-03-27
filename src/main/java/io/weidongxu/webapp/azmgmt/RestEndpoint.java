@@ -1,5 +1,6 @@
 package io.weidongxu.webapp.azmgmt;
 
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.compute.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.compute.models.VirtualMachine;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +49,7 @@ public class RestEndpoint {
                 clientVmInner.beginStart(VM_RG, VM_NAME);
                 break;
             case "off":
-                clientVmInner.beginPowerOff(VM_RG, VM_NAME, false);
+                clientVmInner.beginPowerOff(VM_RG, VM_NAME, false, Context.NONE);
                 break;
             case "reset":
                 clientVmInner.beginRestart(VM_RG, VM_NAME);
