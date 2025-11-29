@@ -41,7 +41,7 @@ stages:
       inputs:
         mavenPomFile: 'pom.xml'
         goals: 'package'
-        jdkVersion: '1.11'
+        jdkVersion: '17'
         jdkArchitecture: 'x64'
         publishJUnitResults: true
 
