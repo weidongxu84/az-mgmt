@@ -3,6 +3,7 @@ package io.weidongxu.webapp.azmgmt;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.compute.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.compute.models.VirtualMachine;
+import com.azure.resourcemanager.network.models.NetworkInterfaces;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -44,11 +45,14 @@ public class RestEndpoint {
     )
     public VirtualMachineState power(@RequestParam String op) {
         VirtualMachinesClient clientVmInner = azureManagement.getClient().virtualMachines().manager().serviceClient().getVirtualMachines();
+        NetworkInterfaces networkInterfaces = azureManagement.getClient().networkInterfaces();
         switch (op) {
             case "on":
+                networkInterfaces.getByResourceGroup(VM_RG, NIC_NAME).update().updateIPConfiguration(NIC_IP_CONFIG2).withExistingPublicIpAddress(PIP_ID).parent().apply();
                 clientVmInner.beginStart(VM_RG, VM_NAME);
                 break;
             case "off":
+                networkInterfaces.getByResourceGroup(VM_RG, NIC_NAME).update().updateIPConfiguration(NIC_IP_CONFIG2).withoutPublicIpAddress().parent().apply();
                 clientVmInner.beginPowerOff(VM_RG, VM_NAME, false, Context.NONE);
                 break;
             case "reset":
