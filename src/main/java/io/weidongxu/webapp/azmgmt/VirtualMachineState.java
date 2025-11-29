@@ -9,5 +9,5 @@ import lombok.Value;
 public class VirtualMachineState {
 
     @JsonProperty("powerState")
-    private final String powerState;
+    String powerState;
 }
