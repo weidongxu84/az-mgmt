@@ -1,0 +1,89 @@
+# Agent Instructions
+
+This document describes the workflow agents must follow when making code changes to this project.
+
+## Change Workflow
+
+### 1. Plan
+
+Before writing any code, clearly understand the goal. For non-trivial changes:
+- Read relevant source files to understand the current implementation.
+- Identify all files that need to change.
+- Check for any side effects (e.g., API contract changes that affect the UI, security config changes, new env vars needed).
+
+### 2. Code
+
+Make precise, targeted changes:
+- Follow the existing code style and patterns in the project.
+- Do not modify unrelated code.
+- If adding new environment variables, add them to `application.properties` with a sensible default and document them.
+- If changing the REST API, update both the backend controller and the frontend `index.html` accordingly.
+
+### 3. Test
+
+Run tests locally before pushing:
+
+```bash
+mvn test
+```
+
+All tests must pass. If a test fails, fix the root cause — do not skip or suppress tests.
+
+### 4. Push
+
+Commit and push to the `master` branch:
+
+```bash
+git add -A
+git commit -m "<concise description of change>"
+git push origin master
+```
+
+The Azure DevOps pipeline (`azure-pipelines.yml`) will trigger automatically on push to `master`.
+
+### 5. Wait for Deploy
+
+Monitor the Azure DevOps pipeline run at:
+**https://weidongxu.visualstudio.com/appservice/_build?definitionId=2**
+
+Wait for the pipeline to complete successfully before proceeding. Do not assume the deploy succeeded without confirming the pipeline run status.
+
+### 6. Verify App Health
+
+After a successful deploy, confirm the app is running:
+
+```bash
+curl -s https://az-mgmt.azurewebsites.net/actuator/health
+```
+
+Expected response: `{"status":"UP",...}`
+
+If health check fails, inspect the App Service logs:
+
+```bash
+az webapp log tail --name az-mgmt --resource-group appservice
+```
+
+## Project Structure
+
+```
+src/main/java/        - Spring Boot application code
+src/main/resources/
+  static/index.html   - Single-page UI
+  application.properties
+src/test/             - Unit tests
+pom.xml               - Maven build
+azure-pipelines.yml   - CI/CD pipeline (Azure DevOps)
+```
+
+## Azure Resources
+
+- **App Service**: `az-mgmt` in resource group `appservice`
+- **Virtual Machine**: `vmess` in resource group `vmess-ja`
+- **Identity**: System-assigned managed identity (no credentials in code)
+
+## Important Constraints
+
+- Do **not** hardcode credentials, API keys, or secrets in source code.
+- Do **not** change the managed identity RBAC assignments without documenting the change.
+- All communication with Azure services must go through managed identity in production.

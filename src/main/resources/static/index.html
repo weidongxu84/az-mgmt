@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VM Manager</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; display: flex; flex-direction: column; }
+
+  header { padding: 1.2rem 2rem; background: #1a1d27; border-bottom: 1px solid #2d3148; display: flex; align-items: center; gap: 1rem; }
+  header h1 { font-size: 1.3rem; font-weight: 600; color: #c8b5f8; }
+
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+
+  .card {
+    background: #1a1d27; border: 1px solid #2d3148; border-radius: 12px;
+    padding: 2.5rem 3rem; min-width: 340px; text-align: center;
+  }
+
+  .vm-name { font-size: .85rem; color: #64748b; margin-bottom: 1.5rem; letter-spacing: .05em; text-transform: uppercase; }
+
+  .state-badge {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .45rem 1.1rem; border-radius: 20px; font-size: .95rem; font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .state-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* running / starting — both green */
+  .state-running  { background: #14321e; border: 1px solid #166534; color: #4ade80; }
+  .state-running .state-dot { background: #4ade80; }
+
+  /* stopping / deallocating — amber */
+  .state-stopping { background: #2d2310; border: 1px solid #78490f; color: #fbbf24; }
+  .state-stopping .state-dot { background: #fbbf24; animation: pulse 1s ease-in-out infinite; }
+
+  /* stopped / deallocated */
+  .state-stopped  { background: #1e1e2a; border: 1px solid #3f3f5a; color: #94a3b8; }
+  .state-stopped .state-dot { background: #64748b; }
+
+  /* unknown / loading */
+  .state-unknown  { background: #1e1e2a; border: 1px solid #3f3f5a; color: #64748b; }
+  .state-unknown .state-dot { background: #475569; }
+
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 2rem;
+    border-radius: 8px; border: none; cursor: pointer; font-size: .95rem; font-weight: 500;
+    transition: opacity .2s;
+  }
+  .btn:hover:not(:disabled) { opacity: .85; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-start { background: #166534; color: #bbf7d0; }
+  .btn-stop  { background: #7c2d2d; color: #fecaca; }
+  .btn-wait  { background: #2d3148; color: #94a3b8; }
+
+  .last-updated { margin-top: 1.5rem; font-size: .78rem; color: #475569; }
+
+  .spinner {
+    width: 1em; height: 1em; border: 2px solid transparent;
+    border-top-color: currentColor; border-radius: 50%;
+    animation: spin .7s linear infinite; display: inline-block; vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>VM Manager</h1>
+</header>
+
+<main>
+  <div class="card">
+    <div class="vm-name">vmess &middot; vmess-ja</div>
+
+    <div id="badge" class="state-badge state-unknown">
+      <span class="state-dot"></span>
+      <span id="state-text">Loading&hellip;</span>
+    </div>
+
+    <br>
+
+    <button id="action-btn" class="btn btn-wait" disabled onclick="doAction()">
+      <span class="spinner"></span>
+    </button>
+
+    <div class="last-updated" id="last-updated"></div>
+  </div>
+</main>
+
+<script>
+  let currentState = null;
+  let pollTimer = null;
+
+  // Map raw Azure power state to a UI category
+  function classify(powerState) {
+    if (!powerState) return 'unknown';
+    const s = powerState.toLowerCase();
+    if (s.includes('running') || s.includes('starting')) return 'running';   // starting → collapsed to running
+    if (s.includes('stopping') || s.includes('deallocating')) return 'stopping';
+    if (s.includes('stopped') || s.includes('deallocated')) return 'stopped';
+    return 'unknown';
+  }
+
+  function stateLabel(powerState) {
+    if (!powerState) return 'Unknown';
+    const s = powerState.toLowerCase();
+    if (s.includes('starting'))     return 'Running';        // collapsed
+    if (s.includes('running'))      return 'Running';
+    if (s.includes('stopping'))     return 'Stopping\u2026';
+    if (s.includes('deallocating')) return 'Stopping\u2026';
+    if (s.includes('stopped') || s.includes('deallocated')) return 'Stopped';
+    return powerState;
+  }
+
+  function render(powerState) {
+    currentState = powerState;
+    const cls = classify(powerState);
+
+    const badge = document.getElementById('badge');
+    badge.className = 'state-badge state-' + cls;
+    document.getElementById('state-text').textContent = stateLabel(powerState);
+
+    const btn = document.getElementById('action-btn');
+    if (cls === 'running') {
+      btn.className = 'btn btn-stop';
+      btn.innerHTML = 'Stop VM';
+      btn.disabled = false;
+    } else if (cls === 'stopped') {
+      btn.className = 'btn btn-start';
+      btn.innerHTML = 'Start VM';
+      btn.disabled = false;
+    } else {
+      btn.className = 'btn btn-wait';
+      btn.innerHTML = '<span class="spinner"></span>&nbsp;Please wait';
+      btn.disabled = true;
+    }
+
+    document.getElementById('last-updated').textContent =
+      'Last updated: ' + new Date().toLocaleTimeString();
+  }
+
+  async function fetchState() {
+    const resp = await fetch('/vm/state');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    return data.powerState;
+  }
+
+  async function refresh() {
+    try {
+      render(await fetchState());
+    } catch (e) {
+      document.getElementById('state-text').textContent = 'Error';
+      document.getElementById('last-updated').textContent = String(e);
+    }
+  }
+
+  async function doAction() {
+    const cls = classify(currentState);
+    if (cls === 'stopping') return;
+    const op = cls === 'running' ? 'off' : 'on';
+
+    const btn = document.getElementById('action-btn');
+    btn.disabled = true;
+    btn.className = 'btn btn-wait';
+    btn.innerHTML = '<span class="spinner"></span>&nbsp;' + (op === 'on' ? 'Starting\u2026' : 'Stopping\u2026');
+
+    try {
+      await fetch('/vm/power?op=' + op);
+    } catch (_) { /* backend starts the operation async; ignore network timing */ }
+
+    // Poll every 3 s until state settles
+    clearInterval(pollTimer);
+    pollTimer = setInterval(async () => {
+      await refresh();
+      const c = classify(currentState);
+      if (c === 'running' || c === 'stopped') clearInterval(pollTimer);
+    }, 3000);
+  }
+
+  refresh();
+</script>
+</body>
+</html>
