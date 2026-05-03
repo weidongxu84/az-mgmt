@@ -39,12 +39,12 @@ git commit -m "<concise description of change>"
 git push origin main
 ```
 
-The Azure DevOps pipeline (`azure-pipelines.yml`) will trigger automatically on push to `main`.
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) will trigger automatically on push to `main`.
 
 ### 5. Wait for Deploy
 
-Monitor the Azure DevOps pipeline run at:
-**https://weidongxu.visualstudio.com/appservice/_build?definitionId=2**
+Monitor the GitHub Actions run at:
+**https://github.com/weidongxu84/az-mgmt/actions**
 
 Wait for the pipeline to complete successfully before proceeding. Do not assume the deploy succeeded without confirming the pipeline run status.
 
@@ -73,7 +73,7 @@ src/main/resources/
   application.properties
 src/test/             - Unit tests
 pom.xml               - Maven build
-azure-pipelines.yml   - CI/CD pipeline (Azure DevOps)
+.github/workflows/    - CI/CD pipeline (GitHub Actions)
 ```
 
 ## Azure Resources
