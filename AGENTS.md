@@ -31,15 +31,15 @@ All tests must pass. If a test fails, fix the root cause — do not skip or supp
 
 ### 4. Push
 
-Commit and push to the `master` branch:
+Commit and push to the `main` branch:
 
 ```bash
 git add -A
 git commit -m "<concise description of change>"
-git push origin master
+git push origin main
 ```
 
-The Azure DevOps pipeline (`azure-pipelines.yml`) will trigger automatically on push to `master`.
+The Azure DevOps pipeline (`azure-pipelines.yml`) will trigger automatically on push to `main`.
 
 ### 5. Wait for Deploy
 
